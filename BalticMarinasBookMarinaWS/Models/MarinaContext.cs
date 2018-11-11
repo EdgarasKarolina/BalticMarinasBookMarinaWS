@@ -57,5 +57,42 @@ namespace BalticMarinasBookMarinaWS.Models
             }
             return list;
         }
+
+        public Marina GetMarinaById(int id)
+        {
+            var marinaById = new Marina();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
+                    "from marina\n" +
+                    "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
+                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
+                    "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
+                    "WHERE MarinaId = @id", conn);
+                cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = id;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        marinaById.MarinaId = Convert.ToInt32(reader["MarinaId"]);
+                        marinaById.MarinaName = reader["MarinaName"].ToString();
+                        marinaById.Phone = reader["Phone"].ToString();
+                        marinaById.Email = reader["Email"].ToString();
+                        marinaById.Depth = Convert.ToDouble(reader["Depth"]);
+                        marinaById.CityName = reader["CityName"].ToString();
+                        marinaById.Country = reader["Country"].ToString();
+                        marinaById.ZipCodeNumber = reader["ZipCodeNumber"].ToString();
+                        marinaById.TotalBerths = Convert.ToInt32(reader["TotalBerths"]);
+                        marinaById.IsToilet = Convert.ToInt32(reader["IsToilet"]);
+                        marinaById.IsShower = Convert.ToInt32(reader["IsShower"]);
+                        marinaById.IsInternet = Convert.ToInt32(reader["IsInternet"]);
+                    }
+                }
+            }
+            return marinaById;
+        }
     }
 }

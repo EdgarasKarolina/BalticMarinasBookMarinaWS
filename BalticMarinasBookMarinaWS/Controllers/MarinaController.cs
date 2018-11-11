@@ -18,5 +18,13 @@ namespace BalticMarinasBookMarinaWS.Controllers
             MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
             return context.GetAllMarinas();
         }
+
+        // GET api/marina/5
+        [HttpGet("{id}")]
+        public Marina Get(int id)
+        {
+            MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
+            return context.GetMarinaById(id);
+        }
     }
 }
