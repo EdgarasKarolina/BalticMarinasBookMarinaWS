@@ -28,7 +28,7 @@ namespace BalticMarinasBookMarinaWS.Controllers
         }
 
         // GET api/marina/5
-        [HttpGet("{country}")]
+        [HttpGet("country/{country}")]
         public IEnumerable<Marina> Get(string country)
         {
             MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
