@@ -46,5 +46,11 @@
                     "AND reservation.CheckOut BETWEEN @checkIn and @checkOut)";
         #endregion
 
+        #region Reservation queries
+
+        public const string CreateReservation = "INSERT INTO reservation (BerthId, CustomerId, CheckIn, CheckOut, IsPaid)\n" +
+                    "VALUES (@berthId, @customerId, @checkIn, @checkOut, 1);";
+
+        #endregion
     }
 }
