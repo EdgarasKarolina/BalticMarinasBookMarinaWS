@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BalticMarinasBookMarinaWS.Models;
+﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace BalticMarinasBookMarinaWS.Controllers
 {
@@ -43,33 +42,14 @@ namespace BalticMarinasBookMarinaWS.Controllers
             var listOfBerths = context.GetAllBerthsByMarinaId(marinaId);
             List<Berth> listofFreeBerths = new List<Berth>();
 
-            HashSet<int> myHashSet = new HashSet<int>();
+            HashSet<int> reservedBerthsIds = new HashSet<int>();
+
             foreach (var berth in listOfReservedBeths)
             {
-                myHashSet.Add(berth.BerthId);
+                reservedBerthsIds.Add(berth.BerthId);
             }
-
-                foreach (var berth in listOfBerths)
-                {
-                    bool exists = false;
-
-                    foreach (var reservedBerth in myHashSet)
-                    {
-                        if (berth.BerthId == reservedBerth)
-                        {
-                            exists = true;
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    if(exists == false)
-                    {
-                    listofFreeBerths.Add(berth);
-                    }
-                } 
-                return listofFreeBerths;
+            return Methods.getFreeBerths(listOfBerths, reservedBerthsIds);
+                //return listofFreeBerths;
         }
     }
 }
