@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BalticMarinasBookMarinaWS.Utilities;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
@@ -25,11 +26,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
-                    "from marina\n" +
-                    "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
-                    "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId;", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllMarinas, conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -63,12 +60,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
-                    "from marina\n" +
-                    "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
-                    "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
-                    "WHERE MarinaId = @id", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetMarinaById, conn);
                 cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = id;
 
                 using (var reader = cmd.ExecuteReader())
@@ -100,12 +92,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
-                    "from marina\n" +
-                    "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
-                    "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
-                    "WHERE city.Country = @country", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllMarinasByCountry, conn);
                 cmd.Parameters.Add("@country", MySqlDbType.String).Value = country;
 
                 using (var reader = cmd.ExecuteReader())

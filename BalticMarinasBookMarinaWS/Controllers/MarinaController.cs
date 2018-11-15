@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BalticMarinasBookMarinaWS.Models;
+﻿using BalticMarinasBookMarinaWS.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BalticMarinasBookMarinaWS.Controllers
 {
@@ -21,15 +18,15 @@ namespace BalticMarinasBookMarinaWS.Controllers
 
         // GET api/marina/5
         [HttpGet("{id}")]
-        public Marina Get(int id)
+        public Marina GetMarinaById(int id)
         {
             MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
             return context.GetMarinaById(id);
         }
 
-        // GET api/marina/5
+        // GET api/marina/country/1
         [HttpGet("country/{country}")]
-        public IEnumerable<Marina> Get(string country)
+        public IEnumerable<Marina> GetAllMarinasByCountry(string country)
         {
             MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
             return context.GetAllMarinasByCountry(country);

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BalticMarinasBookMarinaWS.Utilities;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from berth", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllBerths, conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -50,7 +51,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from berth WHERE MarinaId = @id", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllBerthsByMarinaId, conn);
                 cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = id;
 
                 using (var reader = cmd.ExecuteReader())
@@ -76,7 +77,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from berth WHERE MarinaId = @marinaId AND BerthId = @berthId", conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetBerthByIdAndMarinaId, conn);
                 cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = marinaId;
                 cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = berthId;
 
@@ -100,16 +101,7 @@ namespace BalticMarinasBookMarinaWS.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("Select berth.BerthId, berth.MarinaId, berth.Price\n" +
-                    "from berth\n" +
-                    "JOIN marina ON berth.MarinaId=marina.MarinaId\n" +
-                    "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
-                    "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
-                    "JOIN reservation ON berth.BerthId=reservation.BerthId\n" +
-                    "WHERE (berth.MarinaId = @marinaId AND berth.BerthId = reservation.BerthId\n" +
-                    "AND reservation.CheckIn BETWEEN @checkIn and @checkOut\n" +
-                    "AND reservation.CheckOut BETWEEN @checkIn and @checkOut)" , conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetReservedBerthsByMarinaIdAndDates , conn);
                     cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = marinaId;
                     cmd.Parameters.Add("@checkIn", MySqlDbType.DateTime).Value = checkIn;
                     cmd.Parameters.Add("@checkOut", MySqlDbType.DateTime).Value = checkOut;
