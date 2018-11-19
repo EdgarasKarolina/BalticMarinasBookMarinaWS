@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace BookMarina.Tests
 {
@@ -8,7 +7,7 @@ namespace BookMarina.Tests
         [Test]
         public void ReturnFalseGivenValueOf1()
         {
-            var result = false;
+            var result = true;
 
             Assert.IsFalse(result, "1 should not be prime");
         }
