@@ -43,7 +43,7 @@
                     "JOIN reservation ON berth.BerthId=reservation.BerthId\n" +
                     "WHERE (berth.MarinaId = @marinaId AND berth.BerthId = reservation.BerthId\n" +
                     "AND reservation.CheckIn BETWEEN @checkIn and @checkOut\n" +
-                    "AND reservation.CheckOut BETWEEN @checkIn and @checkOut)";
+                    "OR reservation.CheckOut BETWEEN @checkIn and @checkOut)";
         #endregion
 
         #region Reservation queries
