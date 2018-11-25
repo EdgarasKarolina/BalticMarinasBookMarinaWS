@@ -1,6 +1,5 @@
 ﻿using BalticMarinasBookMarinaWS.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace BalticMarinasBookMarinaWS.Controllers
 {
@@ -8,12 +7,11 @@ namespace BalticMarinasBookMarinaWS.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
-        // POST api/event
-        [HttpPost("{berthId}/{customerId}/{checkIn}/{checkOut}")]
-        public void Post(int berthId, int customerId, DateTime checkIn, DateTime checkOut)
+        [HttpPost]
+        public void Post([FromBody] Reservation reservation)
         {
             ReservationContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.ReservationContext)) as ReservationContext;
-            context.CreateReservation(berthId, customerId, checkIn, checkOut);
+            context.CreateReservation(reservation);
         }
     }
 }

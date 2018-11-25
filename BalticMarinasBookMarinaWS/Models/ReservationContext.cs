@@ -20,7 +20,7 @@ namespace BalticMarinasBookMarinaWS.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public void CreateReservation(int? berthId, int? customerId, DateTime checkIn, DateTime checkOut)
+        public void CreateReservation(Reservation reservation)
         {
             try
             {
@@ -28,10 +28,10 @@ namespace BalticMarinasBookMarinaWS.Models
                 {
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(Queries.CreateReservation, conn);
-                    cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = berthId;
-                    cmd.Parameters.Add("@customerId", MySqlDbType.Int16).Value = customerId;
-                    cmd.Parameters.Add("@checkIn", MySqlDbType.DateTime).Value = checkIn;
-                    cmd.Parameters.Add("@checkOut", MySqlDbType.DateTime).Value = checkOut;
+                    cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = reservation.BerthId;
+                    cmd.Parameters.Add("@customerId", MySqlDbType.Int16).Value = reservation.CustomerId;
+                    cmd.Parameters.Add("@checkIn", MySqlDbType.DateTime).Value = reservation.CheckIn;
+                    cmd.Parameters.Add("@checkOut", MySqlDbType.DateTime).Value = reservation.CheckOut;
 
                     cmd.ExecuteReader();
                 }
