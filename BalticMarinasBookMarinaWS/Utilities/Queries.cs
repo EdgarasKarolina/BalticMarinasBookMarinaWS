@@ -48,6 +48,8 @@
 
         #region Reservation queries
 
+        public const string GetAllReservationsByCustomerId = "select * from reservation where CustomerId = @customerId";
+
         public const string CreateReservation = "INSERT INTO reservation (BerthId, CustomerId, CheckIn, CheckOut, IsPaid)\n" +
                     "VALUES (@berthId, @customerId, @checkIn, @checkOut, 1);";
 
