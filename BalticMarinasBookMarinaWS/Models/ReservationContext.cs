@@ -41,6 +41,35 @@ namespace BalticMarinasBookMarinaWS.Models
             }
         }
 
+        public List<Reservation> GetAllReservationsByCustomerId(int id)
+        {
+            List<Reservation> list = new List<Reservation>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllReservationsByCustomerId, conn);
+                cmd.Parameters.Add("@customerId", MySqlDbType.Int16).Value = id;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Reservation()
+                        {
+                            ReservationId = Convert.ToInt32(reader["ReservationId"]),
+                            BerthId = Convert.ToInt32(reader["BerthId"]),
+                            CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                            CheckIn = Convert.ToDateTime(reader["CheckIn"]),
+                            CheckOut = Convert.ToDateTime(reader["CheckOut"]),
+                            IsPaid = Convert.ToInt32(reader["IsPaid"])
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
         public List<Reservation> GetAllReservationsByBerthId(int berthId, DateTime checkIn, DateTime checkOut)
         {
             List<Reservation> list = new List<Reservation>();
