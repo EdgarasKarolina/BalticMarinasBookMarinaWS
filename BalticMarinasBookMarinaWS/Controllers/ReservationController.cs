@@ -9,7 +9,7 @@ namespace BalticMarinasBookMarinaWS.Controllers
     public class ReservationController : ControllerBase
     {
         // GET api/reservation/1
-        [HttpGet("reservation/{userId}")]
+        [HttpGet("{customerId}")]
         public IEnumerable<Reservation> GetAllReservationsByCustomerId(int customerId)
         {
             ReservationContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.ReservationContext)) as ReservationContext;
