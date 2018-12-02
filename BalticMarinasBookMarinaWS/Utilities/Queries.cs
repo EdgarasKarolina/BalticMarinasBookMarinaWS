@@ -7,20 +7,20 @@
         public const string GetAllMarinas = "Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
                     "from marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
+                    "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId;";
 
         public const string GetMarinaById = "Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
                     "from marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
+                    "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "WHERE MarinaId = @id";
 
         public const string GetAllMarinasByCountry = "Select marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
                     "from marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
+                    "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "WHERE city.Country = @country";
 
@@ -38,7 +38,7 @@
                     "from berth\n" +
                     "JOIN marina ON berth.MarinaId=marina.MarinaId\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
-                    "JOIN city ON city.CityId=cityzipcode.CityId\n" +
+                    "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "JOIN reservation ON berth.BerthId=reservation.BerthId\n" +
                     "WHERE (berth.MarinaId = @marinaId AND berth.BerthId = reservation.BerthId\n" +
