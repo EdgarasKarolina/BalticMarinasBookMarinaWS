@@ -18,7 +18,7 @@ namespace BalticMarinasBookMarinaWS
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(argss)
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
 }
