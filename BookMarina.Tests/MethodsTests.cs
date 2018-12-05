@@ -25,7 +25,7 @@ namespace BookMarina.Tests
             reservedBerthsIds.Add(1);
             reservedBerthsIds.Add(2);
 
-            Assert.AreEqual(2, Methods.getFreeBerths(listOfBerths, reservedBerthsIds).Count , "Amount of berths should be equal to 2");
+            Assert.AreEqual(3, Methods.getFreeBerths(listOfBerths, reservedBerthsIds).Count , "Amount of berths should be equal to 2");
         }
     }
 }
