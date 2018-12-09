@@ -42,8 +42,9 @@
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "JOIN reservation ON berth.BerthId=reservation.BerthId\n" +
                     "WHERE (berth.MarinaId = @marinaId AND berth.BerthId = reservation.BerthId\n" +
-                    "AND reservation.CheckIn BETWEEN @checkIn and @checkOut\n" +
-                    "OR reservation.CheckOut BETWEEN @checkIn and @checkOut)";
+                    "AND @checkIn BETWEEN reservation.CheckIn and reservation.CheckOut\n" +
+                    "OR @checkOut BETWEEN reservation.CheckIn and reservation.CheckOut\n" +
+                    "OR @checkIn < reservation.CheckIn and @checkOut > reservation.CheckOut)";
         #endregion
 
         #region Reservation queries
