@@ -1,4 +1,5 @@
 ﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Repositories.Interfaces;
 using BalticMarinasBookMarinaWS.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,32 +15,32 @@ namespace BalticMarinasBookMarinaWS.Controllers
         [HttpGet]
         public IEnumerable<Berth> GetAll()
         {
-            BerthContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthContext)) as BerthContext;
-            return context.GetAllBerths();
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthRepository)) as BerthRepository;
+            return repository.GetAllBerths();
         }
 
         // GET api/berth/5
         [HttpGet("{id}")]
         public IEnumerable<Berth> GetAllForSpecificMarina(int id)
         {
-            BerthContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthContext)) as BerthContext;
-            return context.GetAllBerthsByMarinaId(id);
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthRepository)) as BerthRepository;
+            return repository.GetAllBerthsByMarinaId(id);
         }
         // GET api/berth/5/3
         [HttpGet("{marinaId}/{berthId}")]
         public Berth GetSpecificBerthForSpecificMarina(int marinaId, int berthId)
         {
-            BerthContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthContext)) as BerthContext;
-            return context.GetBerthByIdAndMarinaId(marinaId, berthId);
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthRepository)) as BerthRepository;
+            return repository.GetBerthByIdAndMarinaId(marinaId, berthId);
         }
 
         // GET api/berth/marinaId/checkIn/checkOut
         [HttpGet("{marinaId}/{checkIn}/{checkOut}")]
         public IEnumerable<Berth> GetNotReservedBerths(int marinaId, DateTime checkIn, DateTime checkOut)
         {
-            BerthContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthContext)) as BerthContext;
-            var listOfReservedBeths = context.GetReservedBerthsByMarinaIdAndDates(marinaId, checkIn, checkOut);
-            var listOfBerths = context.GetAllBerthsByMarinaId(marinaId);
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.BerthRepository)) as BerthRepository;
+            var listOfReservedBeths = repository.GetReservedBerthsByMarinaIdAndDates(marinaId, checkIn, checkOut);
+            var listOfBerths = repository.GetAllBerthsByMarinaId(marinaId);
             List<Berth> listofFreeBerths = new List<Berth>();
 
             HashSet<int> reservedBerthsIds = new HashSet<int>();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace BookMarina.Tests
 {
+
     public class MethodsTests
     {
         [Test]

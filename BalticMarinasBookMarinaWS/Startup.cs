@@ -28,7 +28,7 @@ namespace BalticMarinasBookMarinaWS
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Add(new ServiceDescriptor(typeof(MarinaContext), new MarinaContext(Configuration.GetConnectionString("DefaultConnection"))));
-            services.Add(new ServiceDescriptor(typeof(BerthContext), new BerthContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.Add(new ServiceDescriptor(typeof(BerthRepository), new BerthRepository(Configuration.GetConnectionString("DefaultConnection"))));
             services.Add(new ServiceDescriptor(typeof(ReservationContext), new ReservationContext(Configuration.GetConnectionString("DefaultConnection"))));
         }
 

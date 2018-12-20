@@ -1,15 +1,16 @@
-﻿using BalticMarinasBookMarinaWS.Utilities;
+﻿using BalticMarinasBookMarinaWS.Repositories.Interfaces;
+using BalticMarinasBookMarinaWS.Utilities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
 namespace BalticMarinasBookMarinaWS.Models
 {
-    public class BerthContext
+    public class BerthRepository : IBerthRepository
     {
         public string ConnectionString { get; set; }
 
-        public BerthContext(string connectionString)
+        public BerthRepository(string connectionString)
         {
             this.ConnectionString = connectionString;
         }
@@ -70,7 +71,7 @@ namespace BalticMarinasBookMarinaWS.Models
             return list;
         }
 
-        public Berth GetBerthByIdAndMarinaId(int marinaId, int berthId )
+        public Berth GetBerthByIdAndMarinaId(int marinaId, int berthId)
         {
             var berthById = new Berth();
 
