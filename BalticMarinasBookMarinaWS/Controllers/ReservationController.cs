@@ -1,4 +1,6 @@
 ﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Repositories;
+using BalticMarinasBookMarinaWS.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -12,15 +14,15 @@ namespace BalticMarinasBookMarinaWS.Controllers
         [HttpGet("{customerId}")]
         public IEnumerable<Reservation> GetAllReservationsByCustomerId(int customerId)
         {
-            ReservationContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.ReservationContext)) as ReservationContext;
-            return context.GetAllReservationsByCustomerId(customerId);
+            IReservationRepository repository = HttpContext.RequestServices.GetService(typeof(ReservationRepository)) as ReservationRepository;
+            return repository.GetAllReservationsByCustomerId(customerId);
         }
 
         [HttpPost]
         public void Post([FromBody] Reservation reservation)
         {
-            ReservationContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.ReservationContext)) as ReservationContext;
-            context.CreateReservation(reservation);
+            IReservationRepository repository = HttpContext.RequestServices.GetService(typeof(ReservationRepository)) as ReservationRepository;
+            repository.CreateReservation(reservation);
         }
     }
 }

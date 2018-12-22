@@ -1,16 +1,17 @@
-﻿using BalticMarinasBookMarinaWS.Utilities;
+﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Repositories.Interfaces;
+using BalticMarinasBookMarinaWS.Utilities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace BalticMarinasBookMarinaWS.Models
+namespace BalticMarinasBookMarinaWS.Repositories
 {
-    public class ReservationContext
+    public class ReservationRepository : IReservationRepository
     {
         public string ConnectionString { get; set; }
 
-        public ReservationContext(string connectionString)
+        public ReservationRepository(string connectionString)
         {
             this.ConnectionString = connectionString;
         }

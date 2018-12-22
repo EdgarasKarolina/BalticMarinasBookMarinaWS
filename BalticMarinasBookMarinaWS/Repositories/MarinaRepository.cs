@@ -1,15 +1,17 @@
-﻿using BalticMarinasBookMarinaWS.Utilities;
+﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Repositories.Interfaces;
+using BalticMarinasBookMarinaWS.Utilities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
-namespace BalticMarinasBookMarinaWS.Models
+namespace BalticMarinasBookMarinaWS.Repositories
 {
-    public class MarinaContext
+    public class MarinaRepository : IMarinaRepository
     {
         public string ConnectionString { get; set; }
 
-        public MarinaContext(string connectionString)
+        public MarinaRepository(string connectionString)
         {
             this.ConnectionString = connectionString;
         }

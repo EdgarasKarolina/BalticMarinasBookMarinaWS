@@ -1,4 +1,6 @@
 ﻿using BalticMarinasBookMarinaWS.Models;
+using BalticMarinasBookMarinaWS.Repositories;
+using BalticMarinasBookMarinaWS.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -12,24 +14,24 @@ namespace BalticMarinasBookMarinaWS.Controllers
         [HttpGet]
         public IEnumerable<Marina> GetAll()
         {
-            MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
-            return context.GetAllMarinas();
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            return repository.GetAllMarinas();
         }
 
         // GET api/marina/5
         [HttpGet("{id}")]
         public Marina GetMarinaById(int id)
         {
-            MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
-            return context.GetMarinaById(id);
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            return repository.GetMarinaById(id);
         }
 
         // GET api/marina/country/1
         [HttpGet("country/{country}")]
         public IEnumerable<Marina> GetAllMarinasByCountry(string country)
         {
-            MarinaContext context = HttpContext.RequestServices.GetService(typeof(BalticMarinasBookMarinaWS.Models.MarinaContext)) as MarinaContext;
-            return context.GetAllMarinasByCountry(country);
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            return repository.GetAllMarinasByCountry(country);
         }
     }
 }
