@@ -11,6 +11,13 @@ namespace BalticMarinasBookMarinaWS.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
+        [HttpGet("{reservationId}")]
+        public int GetIfReservationExists(int reservationId)
+        {
+            IReservationRepository repository = HttpContext.RequestServices.GetService(typeof(ReservationRepository)) as ReservationRepository;
+            return repository.GetIfReservationExists(reservationId);
+        }
+
         // GET api/reservation/1
         [HttpGet("{customerId}")]
         public IEnumerable<Reservation> GetAllReservationsByCustomerId(int customerId)

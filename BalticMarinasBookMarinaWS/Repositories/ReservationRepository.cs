@@ -21,6 +21,26 @@ namespace BalticMarinasBookMarinaWS.Repositories
             return new MySqlConnection(ConnectionString);
         }
 
+        public int GetIfReservationExists(int reservationId)
+        {
+            var count = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetIfReservationExists, conn);
+                cmd.Parameters.Add("@reservationId", MySqlDbType.Int16).Value = reservationId;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0);
+                    }
+                }
+            }
+            return count;
+        }
+
         public void CreateReservation(Reservation reservation)
         {
             try

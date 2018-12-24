@@ -49,6 +49,8 @@
 
         #region Reservation queries
 
+        public const string GetIfReservationExists = "SELECT COUNT(*) FROM reservation WHERE ReservationId = @reservationId;";
+
         public const string GetAllReservationsByCustomerId = "SELECT * FROM reservation WHERE CustomerId = @customerId";
 
         public const string GetReservationId = "SELECT ReservationId FROM reservation\n" +

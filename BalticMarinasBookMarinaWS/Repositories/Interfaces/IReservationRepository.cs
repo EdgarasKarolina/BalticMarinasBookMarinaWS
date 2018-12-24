@@ -6,6 +6,7 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
 {
     interface IReservationRepository
     {
+        int GetIfReservationExists(int reservationId);
         void CreateReservation(Reservation reservation);
         void UpdateReservation(int reservationId);
         void DeleteNotPaidReservation(int reservationId);
