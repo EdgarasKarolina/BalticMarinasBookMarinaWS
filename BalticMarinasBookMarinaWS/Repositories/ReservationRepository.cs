@@ -71,30 +71,90 @@ namespace BalticMarinasBookMarinaWS.Repositories
             return list;
         }
 
-        public List<Reservation> GetAllReservationsByBerthId(int berthId, DateTime checkIn, DateTime checkOut)
+        //public List<Reservation> GetAllReservationsByBerthId(int berthId, DateTime checkIn, DateTime checkOut)
+        //{
+        //    List<Reservation> list = new List<Reservation>();
+
+        //    using (MySqlConnection conn = GetConnection())
+        //    {
+        //        conn.Open();
+        //        MySqlCommand cmd = new MySqlCommand("select * from reservation WHERE BerthId = @berthId AND ", conn);
+        //        cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = berthId;
+
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                list.Add(new Reservation()
+        //                {
+        //                    //BerthId = Convert.ToInt32(reader["BerthId"]),
+        //                    //MarinaId = Convert.ToInt32(reader["MarinaId"]),
+        //                    //Price = Convert.ToDouble(reader["Price"])
+        //                });
+        //            }
+        //        }
+        //    }
+        //    return list;
+        //}
+
+        public int GetReservationId(int berthId, int customerId, DateTime checkIn, DateTime checkOut)
         {
-            List<Reservation> list = new List<Reservation>();
+            int reservationId = 0;
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from reservation WHERE BerthId = @berthId AND ", conn);
-                cmd.Parameters.Add("@id", MySqlDbType.Int16).Value = berthId;
+                MySqlCommand cmd = new MySqlCommand(Queries.GetReservationId, conn);
+                cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = berthId;
+                cmd.Parameters.Add("@customerId", MySqlDbType.Int16).Value = customerId;
+                cmd.Parameters.Add("@checkIn", MySqlDbType.DateTime).Value = checkIn;
+                cmd.Parameters.Add("@checkOut", MySqlDbType.DateTime).Value = checkOut;
 
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new Reservation()
-                        {
-                            //BerthId = Convert.ToInt32(reader["BerthId"]),
-                            //MarinaId = Convert.ToInt32(reader["MarinaId"]),
-                            //Price = Convert.ToDouble(reader["Price"])
-                        });
+                        reservationId = Convert.ToInt32(reader["ReservationId"]);
                     }
                 }
             }
-            return list;
+            return reservationId;
+        }
+
+        public void UpdateReservation(int reservationId)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.UpdateReservation, conn);
+                    cmd.Parameters.Add("@reservationId", MySqlDbType.Int16).Value = reservationId;
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        public void DeleteNotPaidReservation(int reservationId)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.DeleteNotPaidReservation, conn);
+                    cmd.Parameters.Add("@reservationId", MySqlDbType.Int16).Value = reservationId;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+                //this.logger.Error($"Error in DeleteRolePerSystem - {e}");
+            }
         }
     }
 }

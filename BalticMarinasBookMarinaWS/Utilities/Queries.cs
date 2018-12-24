@@ -51,8 +51,18 @@
 
         public const string GetAllReservationsByCustomerId = "SELECT * FROM reservation WHERE CustomerId = @customerId";
 
+        public const string GetReservationId = "SELECT ReservationId FROM reservation\n" +
+                    "WHERE BerthId = @berthId\n" +
+                    "AND CustomerId = @customerId\n" +
+                    "AND CheckIn = @checkIn\n" +
+                    "AND CheckOut = @checkOut;";
+
         public const string CreateReservation = "INSERT INTO reservation (BerthId, CustomerId, CheckIn, CheckOut, IsPaid)\n" +
-                    "VALUES (@berthId, @customerId, @checkIn, @checkOut, 1);";
+                    "VALUES (@berthId, @customerId, @checkIn, @checkOut, 0);";
+
+        public const string UpdateReservation = "UPDATE reservation SET IsPaid = 1 WHERE ReservationId = @reservationId";
+
+        public const string DeleteNotPaidReservation = "CALL delete_reservation(@reservationId);";
 
         #endregion
     }
