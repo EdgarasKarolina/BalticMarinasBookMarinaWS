@@ -67,5 +67,14 @@
         public const string DeleteNotPaidReservation = "CALL delete_reservation(@reservationId);";
 
         #endregion
+
+        #region Comment queries
+
+        public const string GetAllCommentsByMarinaId = "SELECT * FROM comment WHERE MarinaId = @marinaId";
+
+        public const string CreateComment = "INSERT INTO comment (TimePlaced, Body, UserName, MarinaId)\n" +
+                    "VALUES (@timePlaced, @body, @userName, @marinaId);";
+
+        #endregion
     }
 }
