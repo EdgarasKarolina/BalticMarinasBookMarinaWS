@@ -8,9 +8,9 @@ namespace BalticMarinasBookMarinaWS.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MarinaController : ControllerBase
+    public class MarinasController : ControllerBase
     {
-        // GET api/marina
+        // GET api/marinas
         [HttpGet]
         public IEnumerable<Marina> GetAll()
         {
@@ -18,7 +18,7 @@ namespace BalticMarinasBookMarinaWS.Controllers
             return repository.GetAllMarinas();
         }
 
-        // GET api/marina/5
+        // GET api/marinas/5
         [HttpGet("{id}")]
         public Marina GetMarinaById(int id)
         {
@@ -26,8 +26,8 @@ namespace BalticMarinasBookMarinaWS.Controllers
             return repository.GetMarinaById(id);
         }
 
-        // GET api/marina/country/1
-        [HttpGet("country/{country}")]
+        // GET api/countries/1/marinas
+        [HttpGet("countries/{country}/marinas")]
         public IEnumerable<Marina> GetAllMarinasByCountry(string country)
         {
             IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;

@@ -10,9 +10,9 @@ namespace BalticMarinasBookMarinaWS.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BerthController : ControllerBase
+    public class BerthsController : ControllerBase
     {
-        // GET api/berth
+        // GET api/berths
         [HttpGet]
         public IEnumerable<Berth> GetAll()
         {
@@ -20,23 +20,23 @@ namespace BalticMarinasBookMarinaWS.Controllers
             return repository.GetAllBerths();
         }
 
-        // GET api/berth/5
-        [HttpGet("{id}")]
+        // GET api/marinas/5/berths
+        [HttpGet("marinas/{id}/berths")]
         public IEnumerable<Berth> GetAllForSpecificMarina(int id)
         {
             IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BerthRepository)) as BerthRepository;
             return repository.GetAllBerthsByMarinaId(id);
         }
-        // GET api/berth/5/3
-        [HttpGet("{marinaId}/{berthId}")]
+        // GET api/marinas/5/berths/3
+        [HttpGet("marinas/{marinaId}/berths/{berthId}")]
         public Berth GetSpecificBerthForSpecificMarina(int marinaId, int berthId)
         {
             IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BerthRepository)) as BerthRepository;
             return repository.GetBerthByIdAndMarinaId(marinaId, berthId);
         }
 
-        // GET api/berth/marinaId/checkIn/checkOut
-        [HttpGet("{marinaId}/{checkIn}/{checkOut}")]
+        // GET api/marinas/5/berths/checkin/2015-10-10/checkOut/2015-10-12
+        [HttpGet("marinas/{marinaId}/berths/checkin/{checkIn}/checkout/{checkOut}")]
         public IEnumerable<Berth> GetNotReservedBerths(int marinaId, DateTime checkIn, DateTime checkOut)
         {
             IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BerthRepository)) as BerthRepository;
