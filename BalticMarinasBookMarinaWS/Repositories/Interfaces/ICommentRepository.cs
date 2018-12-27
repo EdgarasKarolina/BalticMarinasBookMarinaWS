@@ -6,6 +6,6 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
     interface ICommentRepository
     {
         void CreateComment(Comment comment);
-        List<Comment> GetAllCommentByMarinaId(int marinaId);
+        List<Comment> GetAllCommentsByMarinaId(int marinaId);
     }
 }

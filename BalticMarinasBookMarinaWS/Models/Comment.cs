@@ -4,10 +4,10 @@ namespace BalticMarinasBookMarinaWS.Models
 {
     public class Comment
     {
-        private int CommentId { get; set; }
-        private string UserName { get; set; }
-        private DateTime TimePlaced { get; set; }
-        private string Body { get; set; }
-        private int MarinaId { get; set; }
+        public int CommentId { get; set; }
+        public string UserName { get; set; }
+        public DateTime TimePlaced { get; set; }
+        public string Body { get; set; }
+        public int MarinaId { get; set; }
     }
 }
