@@ -9,7 +9,6 @@ namespace BalticMarinasBookMarinaWS.Repositories
 {
     public class CommentRepository : ICommentRepository
     {
-
         public string ConnectionString { get; set; }
 
         public CommentRepository(string connectionString)

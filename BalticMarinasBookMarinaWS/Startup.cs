@@ -31,6 +31,7 @@ namespace BalticMarinasBookMarinaWS
             services.Add(new ServiceDescriptor(typeof(MarinaRepository), new MarinaRepository(Configuration.GetConnectionString("DefaultConnection"))));
             services.Add(new ServiceDescriptor(typeof(BerthRepository), new BerthRepository(Configuration.GetConnectionString("DefaultConnection"))));
             services.Add(new ServiceDescriptor(typeof(ReservationRepository), new ReservationRepository(Configuration.GetConnectionString("DefaultConnection"))));
+            services.Add(new ServiceDescriptor(typeof(CommentRepository), new CommentRepository(Configuration.GetConnectionString("DefaultConnection"))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
