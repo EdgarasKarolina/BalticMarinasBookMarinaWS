@@ -21,6 +21,25 @@ namespace BalticMarinasBookMarinaWS.Repositories
             return new MySqlConnection(ConnectionString);
         }
 
+        public void CreateBerth(Berth berth)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.CreateBerth, conn);
+                    cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = berth.MarinaId;
+                    cmd.Parameters.Add("@price", MySqlDbType.Double).Value = berth.Price;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
         public List<Berth> GetAllBerths()
         {
             List<Berth> list = new List<Berth>();

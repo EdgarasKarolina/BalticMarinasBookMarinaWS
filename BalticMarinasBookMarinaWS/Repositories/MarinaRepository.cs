@@ -21,6 +21,34 @@ namespace BalticMarinasBookMarinaWS.Repositories
             return new MySqlConnection(ConnectionString);
         }
 
+        public void CreateMarina(Marina marina)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.CreateMarina, conn);
+                    cmd.Parameters.Add("@marinaName", MySqlDbType.VarChar).Value = marina.MarinaName;
+                    cmd.Parameters.Add("@phone", MySqlDbType.VarChar).Value = marina.Phone;
+                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = marina.Email;
+                    cmd.Parameters.Add("@depth", MySqlDbType.Double).Value = marina.Depth;
+                    cmd.Parameters.Add("@cityName", MySqlDbType.VarChar).Value = marina.CityName;
+                    cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = marina.Country;
+                    cmd.Parameters.Add("@zipCodeNumber", MySqlDbType.VarChar).Value = marina.ZipCodeNumber;
+                    cmd.Parameters.Add("@totalBerths", MySqlDbType.Int32).Value = marina.TotalBerths;
+                    cmd.Parameters.Add("@isToilet", MySqlDbType.Int32).Value = marina.IsToilet;
+                    cmd.Parameters.Add("@isShower", MySqlDbType.Int32).Value = marina.IsShower;
+                    cmd.Parameters.Add("@isInternet", MySqlDbType.Int32).Value = marina.IsInternet;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
         public List<Marina> GetAllMarinas()
         {
             List<Marina> list = new List<Marina>();

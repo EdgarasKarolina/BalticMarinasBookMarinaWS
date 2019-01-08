@@ -21,6 +21,27 @@ namespace BalticMarinasBookMarinaWS.Repositories
             return new MySqlConnection(ConnectionString);
         }
 
+        public void CreateComment(Comment comment)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.CreateComment, conn);
+                    cmd.Parameters.Add("@timePlaced", MySqlDbType.DateTime).Value = comment.TimePlaced;
+                    cmd.Parameters.Add("@body", MySqlDbType.VarChar).Value = comment.Body;
+                    cmd.Parameters.Add("@userName", MySqlDbType.VarChar).Value = comment.UserName;
+                    cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = comment.MarinaId;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
         public List<Comment> GetAllCommentsByMarinaId(int marinaId)
         {
             List<Comment> list = new List<Comment>();
@@ -47,27 +68,6 @@ namespace BalticMarinasBookMarinaWS.Repositories
                 }
             }
             return list;
-        }
-
-        public void CreateComment(Comment comment)
-        {
-            try
-            {
-                using (MySqlConnection conn = GetConnection())
-                {
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(Queries.CreateComment, conn);
-                    cmd.Parameters.Add("@timePlaced", MySqlDbType.DateTime).Value = comment.TimePlaced;
-                    cmd.Parameters.Add("@body", MySqlDbType.VarChar).Value = comment.Body;
-                    cmd.Parameters.Add("@userName", MySqlDbType.VarChar).Value = comment.UserName;
-                    cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = comment.MarinaId;
-
-                    cmd.ExecuteReader();
-                }
-            }
-            catch (Exception e)
-            {
-            }
         }
     }
 }

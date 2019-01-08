@@ -4,6 +4,22 @@
     {
         #region Marina queries
 
+        public const string CreateMarina = "CALL create_marina(@marinaName, @phone, @email, @depth, @cityName, @country, @zipCodeNumber, @totalBerths, @isToilet, @isShower, @isInternet);";
+
+        /*
+        public const string CreateMarina = "START TRANSACTION;\n" +
+                    "INSERT INTO city (CityName, Country)\n" +
+                    "VALUES(@cityName, @country);\n" +
+                    "INSERT INTO zipcode (ZipCodeNumber)\n" +
+                    "VALUES(@zipCodeNumber);\n" +
+                    "SELECT LAST_INSERT_ID() INTO @zipCodeId;\n" +
+                    "INSERT INTO cityzipcode (City, ZipCodeId)\n" +
+                    "VALUES(@cityName, @zipCodeId);\n" +
+                    "SELECT LAST_INSERT_ID() INTO @cityZipCodeId;\n" +
+                    "INSERT INTO marina (MarinaName, Phone, Email, Depth, CityZipCodeId, TotalBerths, IsToilet, IsShower, IsInternet)\n" +
+                    "VALUES(@marinaName, @phone, @email, @depth, @cityZipCodeId, @totalBerths, @isToilet, @isShower, @isInternet);\n" +
+                    "COMMIT;";
+        */
         public const string GetAllMarinas = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
                     "FROM marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
@@ -27,6 +43,9 @@
         #endregion
 
         #region Berth queries
+
+        public const string CreateBerth = "INSERT INTO berth (MarinaId, Price)\n" +
+                    "VALUES (@marinaId, @price);";
 
         public const string GetAllBerths = "SELECT * FROM berth";
 

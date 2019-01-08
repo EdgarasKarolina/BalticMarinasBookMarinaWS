@@ -12,6 +12,14 @@ namespace BalticMarinasBookMarinaWS.Controllers
     [ApiController]
     public class BerthsController : ControllerBase
     {
+        // POST api/berths
+        [HttpPost]
+        public void Post([FromBody] Berth berth)
+        {
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BerthRepository)) as BerthRepository;
+            repository.CreateBerth(berth);
+        }
+
         // GET api/berths
         [HttpGet]
         public IEnumerable<Berth> GetAll()

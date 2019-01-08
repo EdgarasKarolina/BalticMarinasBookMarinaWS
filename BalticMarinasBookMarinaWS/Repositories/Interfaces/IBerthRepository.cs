@@ -6,6 +6,7 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
 {
     interface IBerthRepository
     {
+        void CreateBerth(Berth berth);
         List<Berth> GetAllBerths();
         List<Berth> GetAllBerthsByMarinaId(int id);
         Berth GetBerthByIdAndMarinaId(int marinaId, int berthId);

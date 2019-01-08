@@ -10,6 +10,14 @@ namespace BalticMarinasBookMarinaWS.Controllers
     [ApiController]
     public class MarinasController : ControllerBase
     {
+        // POST api/marinas
+        [HttpPost]
+        public void Post([FromBody] Marina marina)
+        {
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            repository.CreateMarina(marina);
+        }
+
         // GET api/marinas
         [HttpGet]
         public IEnumerable<Marina> GetAll()
