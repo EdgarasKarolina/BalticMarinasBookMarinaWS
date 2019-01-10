@@ -30,6 +30,8 @@
 
         public const string GetMarinaIdByMarinaName = "SELECT marina.MarinaId FROM marina WHERE MarinaName = @marinaName;";
 
+        public const string DeleteMarina = "DELETE FROM marina WHERE MarinaId = @marinaId;";
+
         #endregion
 
         #region Berth queries

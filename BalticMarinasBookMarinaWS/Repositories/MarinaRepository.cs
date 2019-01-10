@@ -190,5 +190,24 @@ namespace BalticMarinasBookMarinaWS.Repositories
             }
             return marinaId;
         }
+
+        public void DeleteMarina(int marinaId)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.DeleteMarina, conn);
+                    cmd.Parameters.Add("@marinaId", MySqlDbType.Int16).Value = marinaId;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+                //this.logger.Error($"Error in DeleteRolePerSystem - {e}");
+            }
+        }
     }
 }

@@ -57,5 +57,13 @@ namespace BalticMarinasBookMarinaWS.Controllers
             IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
             return repository.GetMarinaIdByMarinaName(marinaName);
         }
+
+        // GET api/marinas/5
+        [HttpDelete("{marinaId}")]
+        public void Delete(int marinaId)
+        {
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            repository.DeleteMarina(marinaId);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
         List<Marina> GetAllMarinasByCountry(string country);
         List<string> GetAllMarinasNames();
         int GetMarinaIdByMarinaName(string marinaName);
+        void DeleteMarina(int marinaId);
     }
 }
