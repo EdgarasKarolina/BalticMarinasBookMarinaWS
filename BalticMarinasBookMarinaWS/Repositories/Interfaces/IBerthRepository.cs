@@ -11,5 +11,6 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
         List<Berth> GetAllBerthsByMarinaId(int id);
         Berth GetBerthByIdAndMarinaId(int marinaId, int berthId);
         List<Berth> GetReservedBerthsByMarinaIdAndDates(int marinaId, DateTime checkIn, DateTime checkOut);
+        void DeleteBerth(int berthId);
     }
 }

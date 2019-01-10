@@ -9,5 +9,7 @@ namespace BalticMarinasBookMarinaWS.Repositories.Interfaces
         List<Marina> GetAllMarinas();
         Marina GetMarinaById(int id);
         List<Marina> GetAllMarinasByCountry(string country);
+        List<string> GetAllMarinasNames();
+        int GetMarinaIdByMarinaName(string marinaName);
     }
 }

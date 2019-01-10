@@ -142,5 +142,24 @@ namespace BalticMarinasBookMarinaWS.Repositories
             }
             return list;
         }
+
+        public void DeleteBerth(int berthId)
+        {
+            try
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(Queries.DeleteBerth, conn);
+                    cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = berthId;
+
+                    cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+                //this.logger.Error($"Error in DeleteRolePerSystem - {e}");
+            }
+        }
     }
 }

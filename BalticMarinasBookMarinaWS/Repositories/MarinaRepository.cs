@@ -149,5 +149,46 @@ namespace BalticMarinasBookMarinaWS.Repositories
             }
             return list;
         }
+
+        public List<string> GetAllMarinasNames()
+        {
+            List<string> list = new List<string>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetAllMarinasNames, conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader["MarinaName"].ToString());
+                    }
+                }
+            }
+            return list;
+        }
+
+        public int GetMarinaIdByMarinaName(string marinaName)
+        {
+            int marinaId = 0;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetMarinaIdByMarinaName, conn);
+                cmd.Parameters.Add("@marinaName", MySqlDbType.VarChar).Value = marinaName;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        marinaId = Convert.ToInt32(reader["MarinaId"]);
+                    }
+                }
+            }
+            return marinaId;
+        }
     }
 }

@@ -41,5 +41,21 @@ namespace BalticMarinasBookMarinaWS.Controllers
             IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
             return repository.GetAllMarinasByCountry(country);
         }
+
+        // GET api/marinas/marinasnames
+        [HttpGet("marinasNames")]
+        public IEnumerable<string> GetAllMarinasNames()
+        {
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            return repository.GetAllMarinasNames();
+        }
+
+        // GET api/marinas/marinaname/marinaId
+        [HttpGet("{marinaName}/marinaId")]
+        public int GetMarinaIdByMarinaName(string marinaName)
+        {
+            IMarinaRepository repository = HttpContext.RequestServices.GetService(typeof(MarinaRepository)) as MarinaRepository;
+            return repository.GetMarinaIdByMarinaName(marinaName);
+        }
     }
 }

@@ -61,5 +61,13 @@ namespace BalticMarinasBookMarinaWS.Controllers
             return Methods.getFreeBerths(listOfBerths, reservedBerthsIds);
                 //return listofFreeBerths;
         }
+
+        // GET api/berths/5
+        [HttpDelete("{berthId}")]
+        public void Delete(int berthId)
+        {
+            IBerthRepository repository = HttpContext.RequestServices.GetService(typeof(BerthRepository)) as BerthRepository;
+            repository.DeleteBerth(berthId);
+        }
     }
 }

@@ -6,20 +6,6 @@
 
         public const string CreateMarina = "CALL create_marina(@marinaName, @phone, @email, @depth, @cityName, @country, @zipCodeNumber, @totalBerths, @isToilet, @isShower, @isInternet);";
 
-        /*
-        public const string CreateMarina = "START TRANSACTION;\n" +
-                    "INSERT INTO city (CityName, Country)\n" +
-                    "VALUES(@cityName, @country);\n" +
-                    "INSERT INTO zipcode (ZipCodeNumber)\n" +
-                    "VALUES(@zipCodeNumber);\n" +
-                    "SELECT LAST_INSERT_ID() INTO @zipCodeId;\n" +
-                    "INSERT INTO cityzipcode (City, ZipCodeId)\n" +
-                    "VALUES(@cityName, @zipCodeId);\n" +
-                    "SELECT LAST_INSERT_ID() INTO @cityZipCodeId;\n" +
-                    "INSERT INTO marina (MarinaName, Phone, Email, Depth, CityZipCodeId, TotalBerths, IsToilet, IsShower, IsInternet)\n" +
-                    "VALUES(@marinaName, @phone, @email, @depth, @cityZipCodeId, @totalBerths, @isToilet, @isShower, @isInternet);\n" +
-                    "COMMIT;";
-        */
         public const string GetAllMarinas = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
                     "FROM marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
@@ -39,6 +25,10 @@
                     "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "WHERE city.Country = @country";
+
+        public const string GetAllMarinasNames = "SELECT marina.MarinaName FROM marina;";
+
+        public const string GetMarinaIdByMarinaName = "SELECT marina.MarinaId FROM marina WHERE MarinaName = @marinaName;";
 
         #endregion
 
@@ -64,6 +54,9 @@
                     "AND @checkIn BETWEEN reservation.CheckIn AND reservation.CheckOut\n" +
                     "OR @checkOut BETWEEN reservation.CheckIn AND reservation.CheckOut\n" +
                     "OR @checkIn < reservation.CheckIn AND @checkOut > reservation.CheckOut)";
+
+        public const string DeleteBerth = "DELETE FROM berth WHERE BerthId = @berthId;";
+
         #endregion
 
         #region Reservation queries
