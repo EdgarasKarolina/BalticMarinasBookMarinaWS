@@ -4,22 +4,22 @@
     {
         #region Marina queries
 
-        public const string CreateMarina = "CALL create_marina(@marinaName, @phone, @email, @depth, @cityName, @country, @zipCodeNumber, @totalBerths, @isToilet, @isShower, @isInternet);";
+        public const string CreateMarina = "CALL create_marina(@marinaName, @phone, @email, @depth, @cityName, @country, @zipCodeNumber, @totalBerths, @isToilet, @isShower, @isInternet, @isPharmacy, @isElectricity, @isRepairing, @isStore, @isTelephone, @isHotel, @isCafeteria, @description);";
 
-        public const string GetAllMarinas = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
+        public const string GetAllMarinas = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet, marina.IsPharmacy, marina.IsElectricity, marina.IsRepairing, marina.IsStore, marina.IsTelephone, marina.IsHotel, marina.IsCafeteria, marina.Description\n" +
                     "FROM marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
                     "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId;";
 
-        public const string GetMarinaById = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
+        public const string GetMarinaById = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet, marina.IsPharmacy, marina.IsElectricity, marina.IsRepairing, marina.IsStore, marina.IsTelephone, marina.IsHotel, marina.IsCafeteria, marina.Description\n" +
                     "FROM marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
                     "JOIN city ON city.CityName=cityzipcode.City\n" +
                     "JOIN zipcode ON zipcode.ZipCodeId=cityzipcode.ZipCodeId\n" +
                     "WHERE MarinaId = @id";
 
-        public const string GetAllMarinasByCountry = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet\n" +
+        public const string GetAllMarinasByCountry = "SELECT marina.MarinaId, marina.MarinaName, marina.Phone, marina.Email, marina.Depth, city.CityName, city.Country, zipcode.ZipCodeNumber, marina.TotalBerths, marina.IsToilet, marina.IsShower, marina.IsInternet, marina.IsPharmacy, marina.IsElectricity, marina.IsRepairing, marina.IsStore, marina.IsTelephone, marina.IsHotel, marina.IsCafeteria, marina.Description\n" +
                     "FROM marina\n" +
                     "JOIN cityzipcode ON marina.CityZipCodeId=cityzipcode.CityZipCodeId\n" +
                     "JOIN city ON city.CityName=cityzipcode.City\n" +

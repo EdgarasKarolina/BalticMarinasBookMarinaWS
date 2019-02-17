@@ -40,6 +40,13 @@ namespace BalticMarinasBookMarinaWS.Repositories
                     cmd.Parameters.Add("@isToilet", MySqlDbType.Int32).Value = marina.IsToilet;
                     cmd.Parameters.Add("@isShower", MySqlDbType.Int32).Value = marina.IsShower;
                     cmd.Parameters.Add("@isInternet", MySqlDbType.Int32).Value = marina.IsInternet;
+                    cmd.Parameters.Add("@isElectricity", MySqlDbType.Int32).Value = marina.IsElectricity;
+                    cmd.Parameters.Add("@isRepairing", MySqlDbType.Int32).Value = marina.IsRepairing;
+                    cmd.Parameters.Add("@isStore", MySqlDbType.Int32).Value = marina.IsStore;
+                    cmd.Parameters.Add("@isTelephone", MySqlDbType.Int32).Value = marina.IsTelephone;
+                    cmd.Parameters.Add("@isHotel", MySqlDbType.Int32).Value = marina.IsHotel;
+                    cmd.Parameters.Add("@isCafeteria", MySqlDbType.Int32).Value = marina.IsCafeteria;
+                    cmd.Parameters.Add("@description", MySqlDbType.Text).Value = marina.Description;
 
                     cmd.ExecuteReader();
                 }
@@ -75,7 +82,15 @@ namespace BalticMarinasBookMarinaWS.Repositories
                             TotalBerths = Convert.ToInt32(reader["TotalBerths"]),
                             IsToilet = Convert.ToInt32(reader["IsToilet"]),
                             IsShower = Convert.ToInt32(reader["IsShower"]),
-                            IsInternet = Convert.ToInt32(reader["IsInternet"])
+                            IsInternet = Convert.ToInt32(reader["IsInternet"]),
+                            IsPharmacy = Convert.ToInt32(reader["IsPharmacy"]),
+                            IsElectricity = Convert.ToInt32(reader["IsElectricity"]),
+                            IsRepairing = Convert.ToInt32(reader["IsRepairing"]),
+                            IsStore = Convert.ToInt32(reader["IsStore"]),
+                            IsTelephone = Convert.ToInt32(reader["IsTelephone"]),
+                            IsHotel = Convert.ToInt32(reader["IsHotel"]),
+                            IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]),
+                            Description = reader["Description"].ToString()
                         });
                     }
                 }
@@ -109,6 +124,14 @@ namespace BalticMarinasBookMarinaWS.Repositories
                         marinaById.IsToilet = Convert.ToInt32(reader["IsToilet"]);
                         marinaById.IsShower = Convert.ToInt32(reader["IsShower"]);
                         marinaById.IsInternet = Convert.ToInt32(reader["IsInternet"]);
+                        marinaById.IsPharmacy = Convert.ToInt32(reader["IsPharmacy"]);
+                        marinaById.IsElectricity = Convert.ToInt32(reader["IsElectricity"]);
+                        marinaById.IsRepairing = Convert.ToInt32(reader["IsRepairing"]);
+                        marinaById.IsStore = Convert.ToInt32(reader["IsStore"]);
+                        marinaById.IsTelephone = Convert.ToInt32(reader["IsTelephone"]);
+                        marinaById.IsHotel = Convert.ToInt32(reader["IsHotel"]);
+                        marinaById.IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]);
+                        marinaById.Description = reader["Description"].ToString();
                     }
                 }
             }
@@ -142,7 +165,15 @@ namespace BalticMarinasBookMarinaWS.Repositories
                             TotalBerths = Convert.ToInt32(reader["TotalBerths"]),
                             IsToilet = Convert.ToInt32(reader["IsToilet"]),
                             IsShower = Convert.ToInt32(reader["IsShower"]),
-                            IsInternet = Convert.ToInt32(reader["IsInternet"])
+                            IsInternet = Convert.ToInt32(reader["IsInternet"]),
+                            IsPharmacy = Convert.ToInt32(reader["IsPharmacy"]),
+                            IsElectricity = Convert.ToInt32(reader["IsElectricity"]),
+                            IsRepairing = Convert.ToInt32(reader["IsRepairing"]),
+                            IsStore = Convert.ToInt32(reader["IsStore"]),
+                            IsTelephone = Convert.ToInt32(reader["IsTelephone"]),
+                            IsHotel = Convert.ToInt32(reader["IsHotel"]),
+                            IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]),
+                            Description = reader["Description"].ToString()
                         });
                     }
                 }

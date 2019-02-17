@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BalticMarinasBookMarinaWS.Models
+﻿namespace BalticMarinasBookMarinaWS.Models
 {
     public class Marina
     {
@@ -19,5 +14,13 @@ namespace BalticMarinasBookMarinaWS.Models
         public int IsToilet { get; set; }
         public int IsShower { get; set; }
         public int IsInternet { get; set; }
+        public int IsPharmacy { get; set; }
+        public int IsElectricity { get; set; }
+        public int IsRepairing { get; set; }
+        public int IsStore { get; set; }
+        public int IsTelephone { get; set; }
+        public int IsHotel { get; set; }
+        public int IsCafeteria { get; set; }
+        public string Description { get; set; }
     }
 }
