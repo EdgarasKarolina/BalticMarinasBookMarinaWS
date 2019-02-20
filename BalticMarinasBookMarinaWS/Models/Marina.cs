@@ -22,5 +22,7 @@
         public int IsHotel { get; set; }
         public int IsCafeteria { get; set; }
         public string Description { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longtitude { get; set; }
     }
 }

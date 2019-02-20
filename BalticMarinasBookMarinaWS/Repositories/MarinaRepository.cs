@@ -47,6 +47,8 @@ namespace BalticMarinasBookMarinaWS.Repositories
                     cmd.Parameters.Add("@isHotel", MySqlDbType.Int32).Value = marina.IsHotel;
                     cmd.Parameters.Add("@isCafeteria", MySqlDbType.Int32).Value = marina.IsCafeteria;
                     cmd.Parameters.Add("@description", MySqlDbType.Text).Value = marina.Description;
+                    cmd.Parameters.Add("@latitude", MySqlDbType.Decimal).Value = marina.Latitude;
+                    cmd.Parameters.Add("@longtitude", MySqlDbType.Decimal).Value = marina.Longtitude;
 
                     cmd.ExecuteReader();
                 }
@@ -90,7 +92,9 @@ namespace BalticMarinasBookMarinaWS.Repositories
                             IsTelephone = Convert.ToInt32(reader["IsTelephone"]),
                             IsHotel = Convert.ToInt32(reader["IsHotel"]),
                             IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]),
-                            Description = reader["Description"].ToString()
+                            Description = reader["Description"].ToString(),
+                            Latitude = Convert.ToDecimal(reader["Latitude"]),
+                            Longtitude = Convert.ToDecimal(reader["Longtitude"])
                         });
                     }
                 }
@@ -132,6 +136,8 @@ namespace BalticMarinasBookMarinaWS.Repositories
                         marinaById.IsHotel = Convert.ToInt32(reader["IsHotel"]);
                         marinaById.IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]);
                         marinaById.Description = reader["Description"].ToString();
+                        marinaById.Latitude = Convert.ToDecimal(reader["Latitude"]);
+                        marinaById.Longtitude = Convert.ToDecimal(reader["Longtitude"]);
                     }
                 }
             }
@@ -173,7 +179,9 @@ namespace BalticMarinasBookMarinaWS.Repositories
                             IsTelephone = Convert.ToInt32(reader["IsTelephone"]),
                             IsHotel = Convert.ToInt32(reader["IsHotel"]),
                             IsCafeteria = Convert.ToInt32(reader["IsCafeteria"]),
-                            Description = reader["Description"].ToString()
+                            Description = reader["Description"].ToString(),
+                            Latitude = Convert.ToDecimal(reader["Latitude"]),
+                            Longtitude = Convert.ToDecimal(reader["Longtitude"])
                         });
                     }
                 }
